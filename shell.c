@@ -2,9 +2,10 @@
 #include "keyboard.h"
 #include "terminal.h"
 #include "string.h"
-#include "line_editor.h"
 
 #define PROMPT "> "
+#define HISTORY_SIZE 4096
+#define LINE_BUFFER_SIZE 128
 
 static char history[HISTORY_SIZE][LINE_BUFFER_SIZE];
 static int history_count = 0;
