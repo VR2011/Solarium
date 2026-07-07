@@ -22,8 +22,11 @@ string.o:
 keyboard.o:
 	gcc -m32 -ffreestanding -Wall -Wextra -Wpedantic -c keyboard.c -o keyboard.o
 
-kernel.bin: boot.o kernel.o terminal.o keyboard.o shell.o string.o
-	$(LD) $(LDFLAGS) boot.o kernel.o terminal.o keyboard.o shell.o string.o -o kernel.bin
+line_editor.o:
+	$(CC) $(CFLAGS) line_editor.c -o line_editor.o
+
+kernel.bin: boot.o kernel.o terminal.o keyboard.o shell.o string.o line_editor.o
+	$(LD) $(LDFLAGS) boot.o kernel.o terminal.o keyboard.o shell.o string.o line_editor.o -o kernel.bin
 
 iso: kernel.bin
 	mkdir -p iso/boot/grub

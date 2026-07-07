@@ -29,5 +29,10 @@ void terminal_putchar(char c);
 void terminal_write(const char* data);
 void terminal_clear(void);
 void terminal_backspace(void);
+void terminal_move_left(void);
+void terminal_move_right(void);
+void terminal_clear_line_from_cursor(void);
+void terminal_clear_current_input(void);
+void terminal_write_flame(const char* data);
 
 #endif

@@ -8,7 +8,7 @@ A simple operating system that as of right now, lets you enter specific commands
 - clear - Clears the terminal
 
 This will be updated as time goes on.
-CURRENT VERSION: 1.0
+CURRENT VERSION: 1.1
 
 ## Prerequisites
 - Windows Subsystem for Linux (Do `wsl --install` in Powershell, I have Ubuntu installed.)

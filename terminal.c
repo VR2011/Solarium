@@ -109,3 +109,47 @@ void terminal_backspace(void) {
     terminal_buffer[terminal_row * VGA_WIDTH + terminal_column] = vga_entry(' ', terminal_color);
     terminal_update_cursor();
 }
+
+void terminal_move_left(void) {
+    if(terminal_column > 0) {
+        terminal_column--;
+        terminal_update_cursor();
+    }
+}
+
+void terminal_move_right(void) {
+    if(terminal_column < VGA_WIDTH - 1) {
+        terminal_column++;
+        terminal_update_cursor();
+    }
+}
+
+void terminal_clear_line_from_cursor(void) {
+    int x = terminal_column;
+    int y = terminal_row;
+    for(int i = x; i < VGA_WIDTH; i++) {
+        terminal_buffer[y * VGA_WIDTH + i] = vga_entry(' ', terminal_color);
+    }
+}
+
+void terminal_clear_current_input(void) {
+    while(terminal_column > 2) {terminal_backspace();}
+    terminal_update_cursor();
+}
+
+void terminal_write_flame(const char *data) {
+    static const uint8_t flame_palette[] = {COLOR_RED, COLOR_LIGHT_RED, COLOR_BROWN, COLOR_LIGHT_BROWN, COLOR_LIGHT_RED, COLOR_RED};
+    const size_t flame_len = sizeof(flame_palette) / sizeof(flame_palette[0]);
+    uint8_t saved_color = terminal_color;
+    size_t i = 0;
+    while(*data) {
+        if(*data == '\n') {
+            terminal_putchar(*data++);
+            continue;
+        }
+        terminal_color = vga_entry_color(flame_palette[i % flame_len], COLOR_BLACK);
+        terminal_putchar(*data++);
+        i++;
+    }
+    terminal_color = saved_color;
+}
