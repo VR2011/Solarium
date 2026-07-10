@@ -30,7 +30,7 @@ You'll then need to install these tools.
 **BUILDING**
 In the Github repo, click Code and then Download ZIP. Once done, extract the zip file. You should see a folder which has all the files.
 
-Once everything above is done, `cd` to the folder (`cd path/to/Solarium`) using WSL where the source files are and run this command:
+Once everything above is done, open the folder in an IDE (Preferably VS Code) and open a WSL window. In there, run this command:
 ```
 make clean && make && make run
 ```
