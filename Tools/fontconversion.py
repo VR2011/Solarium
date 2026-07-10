@@ -1,6 +1,3 @@
-# This tool isn't used in the OS directly; this is a script you can use to convert a TTF font to a usable font in this OS.
-# Usage: python3 Tools/fontconversion.py path/to/font.ttf font8x16_FONTNAME Fonts/font8x16_FONTNAME.h
-
 import sys
 from PIL import Image, ImageDraw, ImageFont
 CHAR_W, CHAR_H = 8, 16
