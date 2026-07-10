@@ -6,7 +6,7 @@ Install the ISO from releases and put it in your favorite VM!
 
 That should be it! Press Enter in the GRUB menu and you should see Solarium open!
 
-Don't want to use a VM? That's alright! You can go [here](https://copy.sh/x86)! Scroll down to setup, put the ISO in CD Image, and load it there by clicking Start Emulation!
+Don't want to use a VM? That's alright! You can go [here](https://copy.sh/v86)! Scroll down to setup, put the ISO in CD Image, and load it there by clicking Start Emulation!
 
 ## Building
 This isn't needed to install the OS! Use the instructions above instead.
