@@ -24,5 +24,6 @@ typedef struct {
 key_event_t;
 
 key_event_t keyboard_getevent(void);
+void keyboard_flush(void);
 
 #endif

@@ -10,13 +10,9 @@ static size_t terminal_column;
 static uint8_t terminal_color;
 static volatile uint16_t* terminal_buffer;
 
-static inline uint8_t vga_entry_color(enum vga_color fg, enum vga_color bg) {
-    return fg | bg << 4;
-}
+static inline uint8_t vga_entry_color(enum vga_color fg, enum vga_color bg) {return fg | bg << 4;}
 
-static inline uint16_t vga_entry(unsigned char uc, uint8_t color) {
-    return(uint16_t) uc | (uint16_t) color << 8;
-}
+static inline uint16_t vga_entry(unsigned char uc, uint8_t color) {return(uint16_t) uc | (uint16_t) color << 8;}
 
 static void terminal_scroll(void) {
     for(size_t y = 1; y < VGA_HEIGHT; y++) {
@@ -53,8 +49,12 @@ void terminal_initialize(void) {
     terminal_update_cursor();
 }
 
-void terminal_setcolor(uint8_t color) {
-    terminal_color = color;
+void terminal_set_cursor(size_t x, size_t y) {
+    if(x >= VGA_WIDTH) {x = VGA_WIDTH - 1;}
+    if(y >= VGA_HEIGHT) {y = VGA_HEIGHT - 1;}
+    terminal_column = x;
+    terminal_row = y;
+    terminal_update_cursor();
 }
 
 void terminal_putchar(char c) {
@@ -153,3 +153,26 @@ void terminal_write_flame(const char *data) {
     }
     terminal_color = saved_color;
 }
+
+void terminal_setcolor(uint8_t color) {terminal_color = color;}
+
+uint8_t terminal_make_color(enum vga_color fg, enum vga_color bg) {return vga_entry_color(fg, bg);}
+
+void terminal_put_at(size_t x, size_t y, char c, uint8_t color) {
+    if(x >= VGA_WIDTH || y >= VGA_HEIGHT) {return;}
+    terminal_buffer[y * VGA_WIDTH + x] = vga_entry(c, color);
+}
+
+void terminal_hide_cursor(void) {
+    outb(0x3D4, 0x0A);
+    outb(0x3D5, 0x20);
+}
+
+void terminal_show_cursor(void) {
+    outb(0x3D4, 0x0A);
+    outb(0x3D5, 0x0E);
+    outb(0x3D4, 0x0B);
+    outb(0x3D5, 0x0F);
+}
+
+size_t terminal_get_row(void) {return terminal_row;}

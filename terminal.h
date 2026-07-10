@@ -34,5 +34,11 @@ void terminal_move_right(void);
 void terminal_clear_line_from_cursor(void);
 void terminal_clear_current_input(void);
 void terminal_write_flame(const char* data);
+uint8_t terminal_make_color(enum vga_color fg, enum vga_color bg);
+void terminal_put_at(size_t x, size_t y, char c, uint8_t color);
+void terminal_set_cursor(size_t x, size_t y);
+void terminal_hide_cursor(void);
+void terminal_show_cursor(void);
+size_t terminal_get_row(void);
 
 #endif

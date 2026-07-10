@@ -112,6 +112,8 @@ static int shift = 0;
 #define KEY_UP_ARROW 0x82
 #define KEY_DOWN_ARROW 0x83
 
+void keyboard_flush(void) {while(inb(0x64) & 1) {inb(0x60);}}
+
 key_event_t keyboard_getevent(void) {
     key_event_t event;
     event.type = KEY_NONE;
