@@ -9,6 +9,9 @@ That should be it! Press Enter in the GRUB menu and you should see Solarium open
 Don't want to use a VM? That's alright! You can go [here](https://copy.sh/v86)! Scroll down to setup, put the ISO in CD Image, and load it there by clicking Start Emulation!
 
 **Notice!** A couple of features will not work using the OS this way, such as font selection. Please use a regular VM for that to work.
+Don't want to use a VM? That's alright! You can go [here](https://copy.sh/v86)! Scroll down to setup, put the ISO in CD Image, and load it there by clicking Start Emulation!
+
+**Notice!** A couple of features will not work using the OS this way, such as font selection. Please use a regular VM for that to work.
 
 There is also a list of devices the OS is confirmed to work on! Check OS-Support.md for the list. If you'd like to add a device to the supported devices list, make a PR with the same format as the template.
 ## Building
