@@ -7,6 +7,7 @@ Install the ISO from releases and put it in your favorite VM!
 That should be it! Press Enter in the GRUB menu and you should see Solarium open!
 
 Don't want to use a VM? That's alright! You can go [here](https://copy.sh/v86)! Scroll down to setup, put the ISO in CD Image, and load it there by clicking Start Emulation!
+
 **Notice!** A couple of features will not work using the OS this way, such as font selection. Please use a regular VM for that to work.
 
 ## Building
@@ -19,7 +20,7 @@ You'll then need to install these tools.
 - **[NASM](https://www.nasm.us/)**
 - Run this command inside of WSL. It will install packages the OS needs for it to work.
   ```
-  sudo apt install grub-common grub-pc-bin grub-efi-amd64-bin xorriso build-essential gcc-multilib make
+  sudo apt install grub-common grub-pc-bin grub-efi-amd64-bin xorriso build-essential gcc-multilib make mtools
   ```
 - **[QEMU](https://www.qemu.org/download/)**
 - You'll also need Python 3 and Pillow.
