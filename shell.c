@@ -4,6 +4,7 @@
 #include "string.h"
 #include "vgagraphics.h"
 #include "fonts.h"
+#include "delay.h"
 
 #define PROMPT "> "
 #define HISTORY_SIZE 4096
@@ -22,7 +23,7 @@ void execute_command(const char *cmd) {
         terminal_write("whoami - Name of the user.\n");
         terminal_write("about - Info about the OS.\n");        
         terminal_write("clear - Clears the terminal.\n");
-        terminal_write("font <name> - Selects a font to be used. The following fonts you can choose are:regular bold dejavu comicsans\n");
+        terminal_write("font <name> - Selects a font to be used. The following fonts you can choose are:\nregular bold dejavu comicsans\n");
     }
     else if(strcmp(cmd, "whoami") == 0) {
         terminal_write("user\n");
@@ -33,7 +34,7 @@ void execute_command(const char *cmd) {
     }
     else if(strcmp(cmd, "about") == 0) {
         terminal_write_flame("Solarium OS\n");
-        terminal_write("Version 1.2\n");
+        terminal_write("Version 2.0\n");
     }
     else if(strcmp(cmd, "clear") == 0) {
         terminal_clear();
@@ -52,7 +53,7 @@ void execute_command(const char *cmd) {
             }
         }
         if(!found) {
-            terminal_write("Unknown font! Please select a correct font name.");
+            terminal_write("Unknown font! Please select a correct font name.\n");
         }
     }
     else {
@@ -66,10 +67,12 @@ static size_t input_row = 0;
 
 static void redraw_input(const char *buffer, int len, int cursor) {
     (void)len;
+    terminal_begin_batch();
     terminal_set_cursor(strlen(PROMPT), input_row);
     terminal_clear_line_from_cursor();
     terminal_write(buffer);
     terminal_set_cursor(strlen(PROMPT) + (size_t)cursor, input_row);
+    terminal_end_batch();
 }
 
 static void load_history(char *buffer, int *len, int *cursor) {
@@ -88,6 +91,15 @@ void shell_run(void) {
     input_row = terminal_get_row();
     while(1) {
         key_event_t event = keyboard_getevent();
+        if(event.type == KEY_NONE) {
+            static uint8_t last_blink_second = 0xFF;
+            uint8_t now = get_rtc_seconds();
+            if(now != last_blink_second) {
+                last_blink_second = now;
+                terminal_blink_cursor();
+            }
+            continue;
+        }
         if(event.type == KEY_ENTER) {
             buffer[len] = '\0';
             terminal_putchar('\n');

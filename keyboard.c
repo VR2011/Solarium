@@ -119,7 +119,7 @@ key_event_t keyboard_getevent(void) {
     event.type = KEY_NONE;
     event.ascii = 0;
     while(1) {
-        while (!(inb(0x64) & 1));
+        if(!(inb(0x64) & 1)) {return event;}
         uint8_t sc = inb(0x60);
         if(sc == 0xE0) {
             while(!(inb(0x64) & 1));

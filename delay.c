@@ -13,7 +13,7 @@ static int rtc_update_in_progress(void) {return cmos_read(0x0A) & 0x80;}
 
 static uint8_t bcd_to_binary(uint8_t value) {return (uint8_t)((value & 0x0F) + ((value / 16) * 10));}
 
-static uint8_t read_rtc_seconds(void) {
+uint8_t get_rtc_seconds(void) {
     while(rtc_update_in_progress()) {}
     uint8_t seconds = cmos_read(0x00);
     uint8_t status_b = cmos_read(0x0B);
@@ -23,9 +23,9 @@ static uint8_t read_rtc_seconds(void) {
 
 void delay_seconds(uint32_t seconds) {
     uint32_t elapsed = 0;
-    uint8_t last_seconds = read_rtc_seconds();
+    uint8_t last_seconds = get_rtc_seconds();
     while(elapsed < seconds) {
-        uint8_t current_seconds = read_rtc_seconds();
+        uint8_t current_seconds = get_rtc_seconds();
         if(current_seconds != last_seconds) {
             elapsed++;
             last_seconds = current_seconds;

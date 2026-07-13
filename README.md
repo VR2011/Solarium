@@ -6,8 +6,11 @@ Install the ISO from releases and put it in your favorite VM!
 
 That should be it! Press Enter in the GRUB menu and you should see Solarium open!
 
-Don't want to use a VM? That's alright! You can go [here](https://copy.sh/x86)! Scroll down to setup, put the ISO in CD Image, and load it there by clicking Start Emulation!
+Don't want to use a VM? That's alright! You can go [here](https://copy.sh/v86)! Scroll down to setup, put the ISO in CD Image, and load it there by clicking Start Emulation!
 
+**Notice!** A couple of features will not work using the OS this way, such as font selection. Please use a regular VM for that to work.
+
+There is also a list of devices the OS is confirmed to work on! Check OS-Support.md for the list. If you'd like to add a device to the supported devices list, make a PR with the same format as the template.
 ## Building
 This isn't needed to install the OS! Use the instructions above instead.
 
@@ -18,7 +21,7 @@ You'll then need to install these tools.
 - **[NASM](https://www.nasm.us/)**
 - Run this command inside of WSL. It will install packages the OS needs for it to work.
   ```
-  sudo apt install grub-common grub-pc-bin grub-efi-amd64-bin xorriso build-essential gcc-multilib make
+  sudo apt install grub-common grub-pc-bin grub-efi-amd64-bin xorriso build-essential gcc-multilib make mtools
   ```
 - **[QEMU](https://www.qemu.org/download/)**
 - You'll also need Python 3 and Pillow.
@@ -30,7 +33,7 @@ You'll then need to install these tools.
 **BUILDING**
 In the Github repo, click Code and then Download ZIP. Once done, extract the zip file. You should see a folder which has all the files.
 
-Once everything above is done, `cd` to the folder (`cd path/to/Solarium`) using WSL where the source files are and run this command:
+Once everything above is done, open the folder in an IDE (Preferably VS Code) and open a WSL window. In there, run this command:
 ```
 make clean && make && make run
 ```

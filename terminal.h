@@ -40,5 +40,9 @@ void terminal_set_cursor(size_t x, size_t y);
 void terminal_hide_cursor(void);
 void terminal_show_cursor(void);
 size_t terminal_get_row(void);
+void terminal_blink_cursor(void);
+void terminal_set_font(const uint8_t *font);
+void terminal_begin_batch(void);
+void terminal_end_batch(void);
 
 #endif
