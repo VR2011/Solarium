@@ -1,3 +1,6 @@
+# This script will let you convert a TTF to a usable font in the OS. Make sure to add this as an entry in fonts.h!
+# Usage: python3 Tools/fontconversion.py path/to/ttf font_NAME Fonts/font_NAME.h XX (font size, optional)
+
 import sys
 from PIL import Image, ImageDraw, ImageFont
 CHAR_W = 8
