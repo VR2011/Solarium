@@ -16,3 +16,4 @@ Device Name | Solarium Version | Supported? | Images For Proof | Notes?
 --- | --- | --- | --- |---
 Acer Chromebook 14 | 2.0 | ✅ | [View](https://i.ibb.co/HT8Sp8Kz/IMG-2126.jpg) | Stretched Display. | VR2011
 iMac (Retina 5K, 27-inch, 2019)  | 2.0 | ❌ | N/A | Black Screen. Nothing is visible. | VR2011
+Lenovo 300w Yoga Gen 4 | 2.0 | ❌ | N/A | Black Screen. | thetruemrneko
